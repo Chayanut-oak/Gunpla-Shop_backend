@@ -1,0 +1,295 @@
+[
+    {
+        "id": 1,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "RX-78-2 Gundam",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam",
+        "scale": "1/144",
+        "grade": "High Grade (HG)",
+        "price": 15.99,
+        "stock": 50,
+        "description": "The iconic Gundam model from the original Mobile Suit Gundam series. This High Grade model features excellent articulation and detail, making it a perfect addition to any Gunpla collection."
+    },
+    {
+        "id": 2,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "ZGMF-X20A Strike Freedom Gundam",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam SEED Destiny",
+        "scale": "1/100",
+        "grade": "Master Grade (MG)",
+        "price": 39.99,
+        "stock": 30,
+        "description": "A Master Grade model of the powerful Strike Freedom Gundam piloted by Kira Yamato in Gundam SEED Destiny. This model boasts intricate detail, multiple articulation points, and comes with a variety of weapons and accessories."
+    },
+    {
+        "id": 3,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "XXXG-01W Wing Gundam",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam Wing",
+        "scale": "1/144",
+        "grade": "Real Grade (RG)",
+        "price": 24.99,
+        "stock": 20,
+        "description": "The Real Grade version of the Wing Gundam from Mobile Suit Gundam Wing. This model features a highly detailed inner frame, allowing for realistic posing and dynamic action poses. A must-have for any Gundam Wing fan."
+    },
+    {
+        "id": 4,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "GN-001 Gundam Exia",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam 00",
+        "scale": "1/60",
+        "grade": "Perfect Grade (PG)",
+        "price": 249.99,
+        "stock": 10,
+        "description": "Experience the pinnacle of Gunpla engineering with the Perfect Grade Gundam Exia from Mobile Suit Gundam 00. This massive model features intricate inner mechanisms, LED lighting effects, and a full range of motion. A true collector's item."
+    },
+    {
+        "id": 5,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Basic Model Tool Set",
+        "type": "Tool",
+        "price": 9.99,
+        "stock": 100,
+        "description": "This basic tool set includes essential tools for plastic model building, including a hobby knife, tweezers, sandpaper, and a cutting mat. Perfect for beginners or as a backup set for experienced builders."
+    },
+    {
+        "id": 6,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Modeling Cement",
+        "type": "Tool",
+        "price": 4.99,
+        "stock": 50,
+        "description": "A high-quality plastic cement for bonding plastic model parts. This cement creates strong and durable bonds, ensuring your model stays together securely. Ideal for use with Gundam model kits and other plastic models."
+    },
+    {
+        "id": 7,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Panel Line Accent Color",
+        "type": "Tool",
+        "price": 6.99,
+        "stock": 30,
+        "description": "Enhance the detail of your plastic models with this panel line accent color. Simply apply the accent color along panel lines and watch as it fills in the gaps, creating realistic shadows and depth. Available in various colors to suit your model's design."
+    },
+    {
+        "id": 8,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "RGZ-91 Re-GZ",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam: Char's Counterattack",
+        "scale": "1/144",
+        "grade": "Real Grade (RG)",
+        "price": 29.99,
+        "stock": 15,
+        "description": "Real Grade model of the RGZ-91 Re-GZ from Mobile Suit Gundam: Char's Counterattack. This model features highly detailed parts and articulation, capturing the sleek design of the Re-GZ as seen in the anime."
+    },
+    {
+        "id": 9,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Gundam Marker Set",
+        "type": "Tool",
+        "price": 12.99,
+        "stock": 40,
+        "description": "Set of Gundam markers in various colors for detailing and customizing your Gunpla models. These markers are specially formulated for use on plastic models, providing precise and vibrant color application."
+    },
+    {
+        "id": 10,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "RX-78-2 Gundam Ver. 3.0",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam",
+        "scale": "1/100",
+        "grade": "Master Grade (MG)",
+        "price": 49.99,
+        "stock": 25,
+        "description": "Master Grade version 3.0 of the iconic RX-78-2 Gundam from Mobile Suit Gundam. This model features a high level of detail and articulation, allowing for dynamic posing and realistic display options."
+    },
+    {
+        "id": 11,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Decal Setter",
+        "type": "Tool",
+        "price": 7.99,
+        "stock": 20,
+        "description": "Decal setting solution for applying water slide decals to your plastic models. This solution helps adhere decals securely to the model surface, preventing wrinkles or air bubbles for a professional finish."
+    },
+    {
+        "id": 12,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "MS-06F Zaku II",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam",
+        "scale": "1/100",
+        "grade": "High Grade (HG)",
+        "price": 19.99,
+        "stock": 35,
+        "description": "High Grade model of the classic MS-06F Zaku II from Mobile Suit Gundam. This model features a simplified design for easy assembly, making it suitable for both beginners and experienced modelers."
+    },
+    {
+        "id": 13,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Precision Side Cutter",
+        "type": "Tool",
+        "price": 14.99,
+        "stock": 25,
+        "description": "High-quality side cutter for precise removal of plastic model parts from the sprue. The sharp blades ensure clean cuts, minimizing the need for additional sanding or trimming."
+    },
+    {
+        "id": 14,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "HGUC RX-0 Unicorn Gundam",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam Unicorn",
+        "scale": "1/144",
+        "grade": "High Grade (HG)",
+        "price": 27.99,
+        "stock": 20,
+        "description": "High Grade Universal Century model of the RX-0 Unicorn Gundam from Mobile Suit Gundam Unicorn. This model features a transformable design, allowing you to switch between Unicorn and Destroy modes."
+    },
+    {
+        "id": 15,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Weathering Kit",
+        "type": "Tool",
+        "price": 18.99,
+        "stock": 15,
+        "description": "Set of weathering powders and pigments for adding realistic weathering effects to your plastic models. Create rust, dirt, and grime effects to enhance the realism of your Gunpla and other scale models."
+    },
+    {
+        "id": 16,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "MG RX-78-2 Ver. Ka",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam",
+        "scale": "1/100",
+        "grade": "Master Grade (MG)",
+        "price": 59.99,
+        "stock": 10,
+        "description": "Master Grade version Ka of the RX-78-2 Gundam from Mobile Suit Gundam. This model features a redesigned inner frame and increased detail, inspired by the artwork of Hajime Katoki."
+    },
+    {
+        "id": 17,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Modeling Putty",
+        "type": "Tool",
+        "price": 8.99,
+        "stock": 30,
+        "description": "High-quality modeling putty for filling gaps and seams in plastic models. This putty is easy to apply and sand, allowing you to achieve seamless finishes on your Gunpla and other scale models."
+    },
+    {
+        "id": 18,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "PG Unicorn Gundam",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam Unicorn",
+        "scale": "1/60",
+        "grade": "Perfect Grade (PG)",
+        "price": 299.99,
+        "stock": 5,
+        "description": "Perfect Grade model of the RX-0 Unicorn Gundam from Mobile Suit Gundam Unicorn. This massive model features advanced articulation, LED lighting effects, and full transformation between Unicorn and Destroy modes."
+    },
+    {
+        "id": 19,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "Gundam Panel Lining Pen",
+        "type": "Tool",
+        "price": 5.99,
+        "stock": 25,
+        "description": "Fine-tip panel lining pen for adding ink panel lines to your Gunpla models. The pen's precise tip allows for clean and consistent lines, enhancing the detail and realism of your plastic models."
+    },
+    {
+        "id": 20,
+        "images": [
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&",
+            "https://cdn.discordapp.com/attachments/399896332187336704/1205883046193274950/placeholder.jpg?ex=65d9fd1a&is=65c7881a&hm=83b0f04496326fd0c68c67d6f78bf00205555c3cd9c00b17b705969b753e2db2&"
+        ],
+        "name": "HGUC MSN-06S Sinanju",
+        "type": "Gunpla",
+        "series": "Mobile Suit Gundam Unicorn",
+        "scale": "1/144",
+        "grade": "High Grade (HG)",
+        "price": 34.99,
+        "stock": 15,
+        "description": "High Grade Universal Century model of the MSN-06S Sinanju from Mobile Suit Gundam Unicorn. This model features a striking red color scheme and detailed decals, capturing the menacing presence of the Sinanju."
+    }
+]
