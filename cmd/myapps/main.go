@@ -19,6 +19,7 @@ func main() {
 	}
 
 	gunplaRepo := dynamoDB.CreateGunplaRepository(dbClient.Client)
+	// orderRepo := dynamoDB.CreateOrderRepository(dbClient.Client)
 
 	gunplaService := services.CreateGunplaService(gunplaRepo)
 
@@ -27,7 +28,7 @@ func main() {
 	router := gin.Default()
 
 	router.GET("/getAllGunpla", gunplaController.GetAllGunplasHandler)
-
+	router.POST("/addGunpla", gunplaController.AddGunplaHHandler)
 	err = router.Run(":8080")
 	if err != nil {
 		fmt.Printf("Error starting server: %v\n", err)

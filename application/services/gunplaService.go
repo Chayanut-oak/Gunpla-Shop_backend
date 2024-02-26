@@ -16,3 +16,6 @@ func CreateGunplaService(gunplaRepository repository.GunplaRepository) *GunplaSe
 func (s *GunplaService) GetAllGunplas() ([]*entity.Gunpla, error) {
 	return s.gunplaRepository.GetAllGunplas()
 }
+func (s *GunplaService) AddGunpla(gunpla entity.NewGunpla) (*entity.NewGunpla, error) {
+	return s.gunplaRepository.AddGunpla(gunpla)
+}

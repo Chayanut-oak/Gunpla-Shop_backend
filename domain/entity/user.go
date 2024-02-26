@@ -1,6 +1,6 @@
 package entity
 
-type Tool struct {
+type User struct {
 	ToolId      string   `json:"toolId"`
 	Images      []string `json:"images"`
 	Name        string   `json:"name"`

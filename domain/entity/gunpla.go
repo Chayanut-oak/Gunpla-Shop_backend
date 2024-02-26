@@ -1,7 +1,7 @@
 package entity
 
 type Gunpla struct {
-	Id          int      `json:"id"`
+	GunplaId    string   `json:"gunplaId"`
 	Images      []string `json:"images"`
 	Name        string   `json:"name"`
 	Type        string   `json:"type"`

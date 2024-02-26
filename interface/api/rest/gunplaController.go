@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/gin-gonic/gin"
 )
 
@@ -27,4 +28,24 @@ func (controller *GunplaController) GetAllGunplasHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, gunplas)
+}
+
+func (controller *GunplaController) AddGunplaHHandler(c *gin.Context) {
+	var gunpla entity.NewGunpla
+
+	// Bind the JSON payload from the request body to the Gunpla struct
+	if err := c.BindJSON(&gunpla); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
+		return
+	}
+
+	// Call the AddGunpla method of the gunplaService
+	res, err := controller.gunplaService.AddGunpla(gunpla)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add Gunpla item"})
+		return
+	}
+
+	// Respond with the added Gunpla and a success message
+	c.JSON(http.StatusCreated, gin.H{"message": "Gunpla item added successfully", "gunpla": res})
 }

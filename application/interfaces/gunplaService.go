@@ -6,4 +6,5 @@ import (
 
 type GunplaService interface {
 	GetAllGunplas() ([]*entity.Gunpla, error)
+	AddGunpla(entity.NewGunpla) (*entity.NewGunpla, error)
 }
