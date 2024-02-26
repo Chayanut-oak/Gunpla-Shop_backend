@@ -1,56 +1,43 @@
-package infrastructure
+package dynamoDB
 
 import (
-    "github.com/aws/aws-sdk-go/aws"
-    "github.com/aws/aws-sdk-go/aws/session"
-    "github.com/aws/aws-sdk-go/service/dynamodb"
-    "github.com/aws/aws-sdk-go/service/dynamodb/dynamodbattribute"
-    "github.com/aws/aws-sdk-go/service/dynamodb/expression"
-    "github.com/Chayanut-oak/Gunpla-Shop_backend/domain"
+	"context"
+	"fmt"
+
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
+	"github.com/aws/aws-sdk-go-v2/aws"
+	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
+	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 )
 
-// DynamoDBProductRepository implements the ProductRepository interface using DynamoDB
-type DynamoDBProductRepository struct {
-    TableName string
-    Client    *dynamodb.DynamoDB
+type GunplaRepository struct {
+	Client *dynamodb.Client
 }
 
-// NewDynamoDBProductRepository creates a new instance of DynamoDBProductRepository
-func NewDynamoDBProductRepository(tableName, region string) *DynamoDBProductRepository {
-    sess := session.Must(session.NewSession(&aws.Config{
-        Region: aws.String(region),
-    }))
-    return &DynamoDBProductRepository{
-        TableName: tableName,
-        Client:    dynamodb.New(sess),
-    }
+func CreateGunplaRepository(client *dynamodb.Client) *GunplaRepository {
+	return &GunplaRepository{Client: client}
 }
 
-// GetProductByID retrieves a product from DynamoDB by ID
-func (repo *DynamoDBProductRepository) GetProductByID(id int) (*domain.Product, error) {
-    key := map[string]*dynamodb.AttributeValue{
-        "ID": {
-            N: aws.String(string(id)),
-        },
-    }
+func (repo *GunplaRepository) GetAllGunplas() ([]*entity.Gunpla, error) {
 
-    result, err := repo.Client.GetItem(&dynamodb.GetItemInput{
-        TableName: aws.String(repo.TableName),
-        Key:       key,
-    })
-    if err != nil {
-        return nil, err
-    }
-
-    if result.Item == nil {
-        return nil, nil // Product not found
-    }
-
-    var product domain.Product
-    err = dynamodbattribute.UnmarshalMap(result.Item, &product)
-    if err != nil {
-        return nil, err
-    }
-
-    return &product, nil
+	input := &dynamodb.ScanInput{
+		TableName: aws.String("Gunplas"),
+	}
+	result, err := repo.Client.Scan(context.TODO(), input)
+	if err != nil {
+		return nil, fmt.Errorf("failed to scan DynamoDB table: %v", err)
+	}
+	var gunplas []*entity.Gunpla
+	for _, item := range result.Items {
+		fmt.Println(item)
+		var gunpla entity.Gunpla
+		err := attributevalue.UnmarshalMap(item, &gunpla)
+		if err != nil {
+			return nil, err
+		}
+		gunplas = append(gunplas, &gunpla)
+		fmt.Println(gunplas)
+	}
+	fmt.Println(gunplas)
+	return gunplas, nil
 }
