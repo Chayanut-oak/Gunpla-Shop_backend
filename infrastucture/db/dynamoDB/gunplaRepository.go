@@ -103,6 +103,24 @@ func (repo *GunplaRepository) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla
 	return &gunpla, err
 }
 
+func (repo *GunplaRepository) DeleteGunpla(gunpla entity.Gunpla) error {
+	key, err := attributevalue.MarshalMap(map[string]string{
+		"GunplaId": gunpla.GunplaId,
+	})
+	if err != nil {
+		return err
+	}
+	_, err = repo.Client.DeleteItem(context.Background(), &dynamodb.DeleteItemInput{
+		TableName: aws.String("Gunplas"), Key: key,
+	})
+
+	if err != nil {
+		log.Printf("Couldn't delete item in table. Here's why: %v\n", err)
+		return err
+	}
+	return err
+}
+
 // func (repo *GunplaRepository) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {
 // 	input := &dynamodb.UpdateItemInput{
 // 		TableName: aws.String("Gunplas"),

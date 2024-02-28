@@ -30,6 +30,7 @@ func main() {
 	router.GET("/getAllGunpla", gunplaController.GetAllGunplasHandler)
 	router.POST("/addGunpla", gunplaController.AddGunplaHHandler)
 	router.PUT("/updateGunpla", gunplaController.UpdateGunplaHandler)
+	router.DELETE("/deleteGunpla", gunplaController.DeleteGunplaHandler)
 	err = router.Run(":8080")
 	if err != nil {
 		fmt.Printf("Error starting server: %v\n", err)
