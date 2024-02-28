@@ -22,6 +22,6 @@ func (s *GunplaService) AddGunpla(gunpla entity.NewGunpla) (*entity.NewGunpla, e
 func (s *GunplaService) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {
 	return s.gunplaRepository.UpdateGunpla(gunpla)
 }
-func (s *GunplaService) DeleteGunpla(gunpla entity.Gunpla) error {
-	return s.gunplaRepository.DeleteGunpla(gunpla)
+func (s *GunplaService) DeleteGunpla(GunplaId string) error {
+	return s.gunplaRepository.DeleteGunpla(GunplaId)
 }

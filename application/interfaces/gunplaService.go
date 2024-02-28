@@ -8,5 +8,5 @@ type GunplaService interface {
 	GetAllGunplas() ([]*entity.Gunpla, error)
 	AddGunpla(entity.NewGunpla) (*entity.NewGunpla, error)
 	UpdateGunpla(entity.Gunpla) (*entity.Gunpla, error)
-	DeleteGunpla(entity.Gunpla) error
+	DeleteGunpla(string) error
 }
