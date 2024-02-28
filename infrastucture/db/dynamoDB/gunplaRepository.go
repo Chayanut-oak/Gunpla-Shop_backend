@@ -8,6 +8,7 @@ import (
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
+	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/expression"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
 	"github.com/google/uuid"
@@ -62,6 +63,44 @@ func (repo *GunplaRepository) AddGunpla(gunpla entity.NewGunpla) (*entity.NewGun
 		return nil, err
 	}
 	return &gunpla, nil
+}
+
+func (repo *GunplaRepository) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {
+	key, err := attributevalue.MarshalMap(map[string]string{
+		"GunplaId": gunpla.GunplaId,
+	})
+	if err != nil {
+		return nil, err
+	}
+	update := expression.Set(expression.Name("Images"), expression.Value(gunpla.Images))
+	update.Set(expression.Name("Name"), expression.Value(gunpla.Name))
+	update.Set(expression.Name("Type"), expression.Value(gunpla.Type))
+	update.Set(expression.Name("Series"), expression.Value(gunpla.Series))
+	update.Set(expression.Name("Scale"), expression.Value(gunpla.Scale))
+	update.Set(expression.Name("Grade"), expression.Value(gunpla.Grade))
+	update.Set(expression.Name("Price"), expression.Value(gunpla.Price))
+	update.Set(expression.Name("Stock"), expression.Value(gunpla.Stock))
+	update.Set(expression.Name("Description"), expression.Value(gunpla.Description))
+
+	expr, err := expression.NewBuilder().WithUpdate(update).Build()
+	if err != nil {
+		log.Printf("Couldn't build expression for update. Here's why: %v\n", err)
+		return nil, err
+	}
+
+	_, err = repo.Client.UpdateItem(context.Background(), &dynamodb.UpdateItemInput{
+		TableName:                 aws.String("Gunplas"),
+		Key:                       key,
+		ExpressionAttributeNames:  expr.Names(),
+		ExpressionAttributeValues: expr.Values(),
+		UpdateExpression:          expr.Update(),
+	})
+	if err != nil {
+		log.Printf("Couldn't update item in table. Here's why: %v\n", err)
+		return nil, err
+	}
+
+	return &gunpla, err
 }
 
 // func (repo *GunplaRepository) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {

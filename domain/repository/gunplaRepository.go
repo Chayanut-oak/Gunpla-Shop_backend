@@ -7,4 +7,5 @@ import (
 type GunplaRepository interface {
 	GetAllGunplas() ([]*entity.Gunpla, error)
 	AddGunpla(entity.NewGunpla) (*entity.NewGunpla, error)
+	UpdateGunpla(entity.Gunpla) (*entity.Gunpla, error)
 }
