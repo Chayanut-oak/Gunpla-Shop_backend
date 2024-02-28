@@ -18,6 +18,15 @@ func CreateGunplaController(gunplaService interfaces.GunplaService) *GunplaContr
 		gunplaService: gunplaService,
 	}
 }
+func (gc *GunplaController) SetupRoutes(router *gin.Engine) {
+	gunplaGroup := router.Group("/gunpla")
+	{
+		gunplaGroup.GET("", gc.GetAllGunplasHandler)
+		gunplaGroup.POST("/addGunpla", gc.AddGunplaHHandler)
+		gunplaGroup.PUT("/updateGunpla", gc.UpdateGunplaHandler)
+		gunplaGroup.DELETE("/deleteGunpla/:gunplaId", gc.DeleteGunplaHandler)
+	}
+}
 
 func (controller *GunplaController) GetAllGunplasHandler(c *gin.Context) {
 	gunplas, err := controller.gunplaService.GetAllGunplas()

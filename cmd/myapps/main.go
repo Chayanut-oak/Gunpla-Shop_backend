@@ -26,11 +26,7 @@ func main() {
 	gunplaController := rest.CreateGunplaController(gunplaService)
 
 	router := gin.Default()
-
-	router.GET("/getAllGunpla", gunplaController.GetAllGunplasHandler)
-	router.POST("/addGunpla", gunplaController.AddGunplaHHandler)
-	router.PUT("/updateGunpla", gunplaController.UpdateGunplaHandler)
-	router.DELETE("/deleteGunpla/:gunplaId", gunplaController.DeleteGunplaHandler)
+	gunplaController.SetupRoutes(router)
 	err = router.Run(":8080")
 	if err != nil {
 		fmt.Printf("Error starting server: %v\n", err)
