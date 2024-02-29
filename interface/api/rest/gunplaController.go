@@ -6,6 +6,7 @@ import (
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
 	"github.com/gin-gonic/gin"
 )
 
@@ -24,7 +25,7 @@ func (gc *GunplaController) SetupRoutes(router *gin.Engine) {
 		gunplaGroup.GET("", gc.GetAllGunplasHandler)
 		gunplaGroup.POST("/addGunpla", gc.AddGunplaHHandler)
 		gunplaGroup.PUT("/updateGunpla", gc.UpdateGunplaHandler)
-		gunplaGroup.DELETE("/deleteGunpla/:gunplaId", gc.DeleteGunplaHandler)
+		gunplaGroup.DELETE("/deleteGunpla/:productId", gc.DeleteGunplaHandler)
 	}
 }
 
@@ -40,7 +41,7 @@ func (controller *GunplaController) GetAllGunplasHandler(c *gin.Context) {
 }
 
 func (controller *GunplaController) AddGunplaHHandler(c *gin.Context) {
-	var gunpla entity.NewGunpla
+	var gunpla restModel.GunplaRestModal
 
 	// Bind the JSON payload from the request body to the Gunpla struct
 	if err := c.BindJSON(&gunpla); err != nil {
@@ -78,8 +79,8 @@ func (controller *GunplaController) UpdateGunplaHandler(c *gin.Context) {
 }
 
 func (controller *GunplaController) DeleteGunplaHandler(c *gin.Context) {
-	GunplaId := c.Param("gunplaId")
-	err := controller.gunplaService.DeleteGunpla(GunplaId)
+	ProductId := c.Param("productId")
+	err := controller.gunplaService.DeleteGunpla(ProductId)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete Gunpla item"})
 		return

@@ -1,6 +1,6 @@
-package entity
+package restModel
 
-type NewGunpla struct {
+type GunplaRestModal struct {
 	Images      []string `json:"images"`
 	Name        string   `json:"name"`
 	Type        string   `json:"type"`

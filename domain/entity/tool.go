@@ -1,7 +1,7 @@
 package entity
 
 type Tool struct {
-	ToolId      string   `json:"toolId"`
+	ProductId   string   `json:"productId"`
 	Images      []string `json:"images"`
 	Name        string   `json:"name"`
 	Type        string   `json:"type"`

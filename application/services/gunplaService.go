@@ -3,6 +3,7 @@ package services
 import (
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/repository"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
 )
 
 type GunplaService struct {
@@ -16,12 +17,15 @@ func CreateGunplaService(gunplaRepository repository.GunplaRepository) *GunplaSe
 func (s *GunplaService) GetAllGunplas() ([]*entity.Gunpla, error) {
 	return s.gunplaRepository.GetAllGunplas()
 }
-func (s *GunplaService) AddGunpla(gunpla entity.NewGunpla) (*entity.NewGunpla, error) {
+func (s *GunplaService) AddGunpla(gunpla restModel.GunplaRestModal) (*restModel.GunplaRestModal, error) {
 	return s.gunplaRepository.AddGunpla(gunpla)
 }
 func (s *GunplaService) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {
 	return s.gunplaRepository.UpdateGunpla(gunpla)
 }
-func (s *GunplaService) DeleteGunpla(GunplaId string) error {
-	return s.gunplaRepository.DeleteGunpla(GunplaId)
+func (s *GunplaService) UpdateGunplaStock(order restModel.OrderRestModal) (string, error) {
+	return s.gunplaRepository.UpdateGunplaStock(order)
+}
+func (s *GunplaService) DeleteGunpla(ProductId string) error {
+	return s.gunplaRepository.DeleteGunpla(ProductId)
 }
