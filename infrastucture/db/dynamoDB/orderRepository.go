@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"time"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
@@ -48,8 +49,11 @@ func (repo *OrderRepository) GetAllOrders() ([]*entity.Order, error) {
 
 func (repo *OrderRepository) AddOrder(order restModel.OrderRestModal) (*restModel.OrderRestModal, error) {
 	item, err := attributevalue.MarshalMap(order)
+	currentTime := time.Now().Format(time.DateTime)
 	item["OrderId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}
-	fmt.Print(item)
+	item["OrderDate"] = &types.AttributeValueMemberS{Value: currentTime} // Replace "your_order_date_here" with the actual order date
+	item["Status"] = &types.AttributeValueMemberS{Value: "Pending"}      // Replace "your_status_here" with the actual status
+
 	if err != nil {
 		return nil, err
 	}
