@@ -4,13 +4,14 @@ import (
 	"fmt"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services"
-	"github.com/Chayanut-oak/Gunpla-Shop_backend/infrastucture/db/dynamoDB"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/infrastucture/persistence/dynamoDB"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/interface/api/rest"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
+
 	dbClient, err := dynamoDB.CreateDynamoDBClient()
 
 	if err != nil {
