@@ -23,7 +23,7 @@ func (gc *GunplaController) SetupRoutes(router *gin.Engine) {
 	gunplaGroup := router.Group("/gunpla")
 	{
 		gunplaGroup.GET("", gc.GetAllGunplasHandler)
-		gunplaGroup.POST("/addGunpla", gc.AddGunplaHHandler)
+		gunplaGroup.POST("/addGunpla", gc.AddGunplaHandler)
 		gunplaGroup.PUT("/updateGunpla", gc.UpdateGunplaHandler)
 		gunplaGroup.DELETE("/deleteGunpla/:productId", gc.DeleteGunplaHandler)
 	}
@@ -40,7 +40,7 @@ func (controller *GunplaController) GetAllGunplasHandler(c *gin.Context) {
 	c.JSON(http.StatusOK, gunplas)
 }
 
-func (controller *GunplaController) AddGunplaHHandler(c *gin.Context) {
+func (controller *GunplaController) AddGunplaHandler(c *gin.Context) {
 	var gunpla restModel.GunplaRestModal
 
 	// Bind the JSON payload from the request body to the Gunpla struct

@@ -6,15 +6,18 @@ import (
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/repository"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/valueObject"
 )
 
 type OrderService struct {
-	orderRepository  repository.OrderRepository
-	gunplaRepository repository.GunplaRepository
+	orderRepository repository.OrderRepository
+	// gunplaRepository repository.GunplaRepository
+	// toolRepository   repository.ToolRepository
 }
 
-func CreateOrderService(orderRepository repository.OrderRepository, gunplaRepository repository.GunplaRepository) *OrderService {
-	return &OrderService{orderRepository: orderRepository, gunplaRepository: gunplaRepository}
+func CreateOrderService(orderRepository repository.OrderRepository) *OrderService {
+	return &OrderService{orderRepository: orderRepository}
+	// gunplaRepository: gunplaRepository, toolRepository: toolRepository
 }
 
 func (s *OrderService) GetAllOrders() ([]*entity.Order, error) {
@@ -22,10 +25,24 @@ func (s *OrderService) GetAllOrders() ([]*entity.Order, error) {
 }
 func (s *OrderService) AddOrder(order restModel.OrderRestModal) (*restModel.OrderRestModal, error) {
 	// Update gunpla stock
-	if _, err := s.gunplaRepository.UpdateGunplaStock(order); err != nil {
-		return nil, fmt.Errorf("failed to update gunpla stock: %v", err)
-	}
+	var gunpla []valueObject.Product
+	var tool []valueObject.Product
 
+	for _, p := range order.Cart {
+		if p.Type == "Gunpla" {
+			gunpla = append(gunpla, p)
+		} else if p.Type == "Tool" {
+			tool = append(tool, p)
+		}
+	}
+	fmt.Println(gunpla)
+	fmt.Println(tool)
+	// if _, err := s.gunplaRepository.UpdateGunplaStock(gunpla); err != nil {
+	// 	return nil, fmt.Errorf("failed to update gunpla stock: %v", err)
+	// }
+	if _, err := s.orderRepository.UpdateOrderStock(order); err != nil {
+		return nil, fmt.Errorf("failed to update tool stock: %v", err)
+	}
 	// Add order
 	addedOrder, err := s.orderRepository.AddOrder(order)
 	if err != nil {
@@ -38,6 +55,7 @@ func (s *OrderService) AddOrder(order restModel.OrderRestModal) (*restModel.Orde
 
 	return addedOrder, nil
 }
+
 func (s *OrderService) UpdateOrder(order entity.Order) (*entity.Order, error) {
 	return s.orderRepository.UpdateOrder(order)
 }

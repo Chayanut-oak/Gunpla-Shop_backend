@@ -19,17 +19,21 @@ func main() {
 	}
 
 	gunplaRepo := dynamoDB.CreateGunplaRepository(dbClient.Client)
+	toolRepo := dynamoDB.CreateToolRepository(dbClient.Client)
 	orderRepo := dynamoDB.CreateOrderRepository(dbClient.Client)
-	// orderRepo := dynamoDB.CreateOrderRepository(dbClient.Client)
 
 	gunplaService := services.CreateGunplaService(gunplaRepo)
-	orderService := services.CreateOrderService(orderRepo, gunplaRepo)
+	toolService := services.CreateToolService(toolRepo)
+	orderService := services.CreateOrderService(orderRepo)
+	// orderService := services.CreateOrderService(orderRepo, gunplaRepo, toolRepo)
 
 	gunplaController := rest.CreateGunplaController(gunplaService)
+	toolController := rest.CreateToolController(toolService)
 	orderController := rest.CreateOrderController(orderService)
 
 	router := gin.Default()
 	gunplaController.SetupRoutes(router)
+	toolController.SetupRoutes(router)
 	orderController.SetupRoutes(router)
 	err = router.Run(":8080")
 	if err != nil {

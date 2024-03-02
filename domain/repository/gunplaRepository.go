@@ -9,6 +9,6 @@ type GunplaRepository interface {
 	GetAllGunplas() ([]*entity.Gunpla, error)
 	AddGunpla(restModel.GunplaRestModal) (*restModel.GunplaRestModal, error)
 	UpdateGunpla(entity.Gunpla) (*entity.Gunpla, error)
-	UpdateGunplaStock(restModel.OrderRestModal) (string, error)
+	// UpdateGunplaStock([]valueObject.Product) (string, error)
 	DeleteGunpla(string) error
 }

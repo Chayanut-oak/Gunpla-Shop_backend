@@ -7,6 +7,8 @@ import (
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+
+	// "github.com/Chayanut-oak/Gunpla-Shop_backend/domain/valueObject"
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
@@ -120,49 +122,50 @@ func (repo *GunplaRepository) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla
 	}
 	return &gunpla, nil
 }
-func (repo *GunplaRepository) UpdateGunplaStock(order restModel.OrderRestModal) (string, error) {
-	// Start a transaction
-	transaction := make([]types.TransactWriteItem, 0, len(order.Cart))
 
-	for _, item := range order.Cart {
-		// Marshal the key for the update operation
-		key, err := attributevalue.MarshalMap(map[string]string{
-			"ProductId": item.ProductId,
-		})
-		if err != nil {
-			return "", fmt.Errorf("failed to marshal key: %v", err)
-		}
+// func (repo *GunplaRepository) UpdateGunplaStock(gunpla []valueObject.Product) (string, error) {
+// 	// Start a transaction
+// 	transaction := make([]types.TransactWriteItem, 0, len(gunpla))
+// 	for _, item := range gunpla {
+// 		// fmt.Println(item)
+// 		// Marshal the key for the update operation
+// 		key, err := attributevalue.MarshalMap(map[string]string{
+// 			"ProductId": item.ProductId,
+// 		})
+// 		if err != nil {
+// 			return "", fmt.Errorf("failed to marshal key: %v", err)
+// 		}
 
-		// Define the update operation
-		update := &types.Update{
-			TableName: aws.String("Gunplas"),
-			Key:       key,
-			// Update stock with conditional expression to ensure it does not become negative
-			UpdateExpression:          aws.String("SET Stock = if_not_exists(Stock, :initial) - :quantity"),
-			ExpressionAttributeValues: map[string]types.AttributeValue{":quantity": &types.AttributeValueMemberN{Value: fmt.Sprintf("%d", item.Quantity)}, ":initial": &types.AttributeValueMemberN{Value: "0"}},
-			ConditionExpression:       aws.String("attribute_exists(Stock) and Stock >= :quantity"),
-		}
+// 		// Define the update operation
+// 		update := &types.Update{
+// 			TableName: aws.String("Gunplas"),
+// 			Key:       key,
+// 			// Update stock with conditional expression to ensure it does not become negative
+// 			UpdateExpression:          aws.String("SET Stock = if_not_exists(Stock, :initial) - :quantity"),
+// 			ExpressionAttributeValues: map[string]types.AttributeValue{":quantity": &types.AttributeValueMemberN{Value: fmt.Sprintf("%d", item.Quantity)}, ":initial": &types.AttributeValueMemberN{Value: "0"}},
+// 			ConditionExpression:       aws.String("attribute_exists(Stock) and Stock >= :quantity"),
+// 		}
 
-		// Add the update operation to the transaction
-		transaction = append(transaction, types.TransactWriteItem{Update: update})
-	}
+// 		// Add the update operation to the transaction
+// 		transaction = append(transaction, types.TransactWriteItem{Update: update})
+// 	}
 
-	// If no valid updates were added to the transaction, return nil
-	if len(transaction) == 0 {
-		return "", nil
-	}
+// 	// If no valid updates were added to the transaction, return nil
+// 	if len(transaction) == 0 {
+// 		return "", nil
+// 	}
 
-	// Execute the transaction
-	_, err := repo.Client.TransactWriteItems(context.TODO(), &dynamodb.TransactWriteItemsInput{
-		TransactItems: transaction,
-	})
-	if err != nil {
-		log.Printf("Failed to execute transaction: %v", err)
-		return "", fmt.Errorf("transaction failed: %v", err)
-	}
+// 	// Execute the transaction
+// 	_, err := repo.Client.TransactWriteItems(context.TODO(), &dynamodb.TransactWriteItemsInput{
+// 		TransactItems: transaction,
+// 	})
+// 	if err != nil {
+// 		log.Printf("Failed to execute transaction: %v", err)
+// 		return "", fmt.Errorf("transaction failed: %v", err)
+// 	}
 
-	return "Success", nil
-}
+// 	return "Success", nil
+// }
 
 // func (repo *GunplaRepository) UpdateGunplaStock(order restModel.OrderRestModal) (string, error) {
 // 	// Start a transaction

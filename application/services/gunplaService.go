@@ -23,9 +23,10 @@ func (s *GunplaService) AddGunpla(gunpla restModel.GunplaRestModal) (*restModel.
 func (s *GunplaService) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {
 	return s.gunplaRepository.UpdateGunpla(gunpla)
 }
-func (s *GunplaService) UpdateGunplaStock(order restModel.OrderRestModal) (string, error) {
-	return s.gunplaRepository.UpdateGunplaStock(order)
-}
+
+//	func (s *GunplaService) UpdateGunplaStock(gunpla []valueObject.Product) (string, error) {
+//		return s.gunplaRepository.UpdateGunplaStock(gunpla)
+//	}
 func (s *GunplaService) DeleteGunpla(ProductId string) error {
 	return s.gunplaRepository.DeleteGunpla(ProductId)
 }
