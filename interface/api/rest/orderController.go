@@ -42,7 +42,7 @@ func (controller *OrderController) GetAllOrdersHandler(c *gin.Context) {
 }
 
 func (controller *OrderController) AddOrderHandler(c *gin.Context) {
-	var order restModel.OrderRestModal
+	var order restModel.OrderRestModel
 	// Bind the JSON payload from the request body to the order struct
 	if err := c.BindJSON(&order); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})

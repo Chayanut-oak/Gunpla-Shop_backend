@@ -38,7 +38,7 @@ func (s *OrderService) CreatePaymentToken(payment restModel.PaymentRestModel) (s
 	return token, nil
 }
 
-func (s *OrderService) AddOrder(order restModel.OrderRestModal) (*restModel.OrderRestModal, error) {
+func (s *OrderService) AddOrder(order restModel.OrderRestModel) (*restModel.OrderRestModel, error) {
 	// Update gunpla stock
 	// var gunpla []valueObject.Product
 	// var tool []valueObject.Product

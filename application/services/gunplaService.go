@@ -17,7 +17,7 @@ func CreateGunplaService(gunplaRepository repository.GunplaRepository) *GunplaSe
 func (s *GunplaService) GetAllGunplas() ([]*entity.Gunpla, error) {
 	return s.gunplaRepository.GetAllGunplas()
 }
-func (s *GunplaService) AddGunpla(gunpla restModel.GunplaRestModal) (*restModel.GunplaRestModal, error) {
+func (s *GunplaService) AddGunpla(gunpla restModel.GunplaRestModel) (*restModel.GunplaRestModel, error) {
 	return s.gunplaRepository.AddGunpla(gunpla)
 }
 func (s *GunplaService) UpdateGunpla(gunpla entity.Gunpla) (*entity.Gunpla, error) {

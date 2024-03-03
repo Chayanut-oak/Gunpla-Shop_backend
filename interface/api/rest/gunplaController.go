@@ -41,7 +41,7 @@ func (controller *GunplaController) GetAllGunplasHandler(c *gin.Context) {
 }
 
 func (controller *GunplaController) AddGunplaHandler(c *gin.Context) {
-	var gunpla restModel.GunplaRestModal
+	var gunpla restModel.GunplaRestModel
 
 	// Bind the JSON payload from the request body to the Gunpla struct
 	if err := c.BindJSON(&gunpla); err != nil {

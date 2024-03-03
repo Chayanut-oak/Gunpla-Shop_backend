@@ -7,8 +7,8 @@ import (
 
 type OrderRepository interface {
 	GetAllOrders() ([]*entity.Order, error)
-	AddOrder(restModel.OrderRestModal, string) (*restModel.OrderRestModal, error)
+	AddOrder(restModel.OrderRestModel, string) (*restModel.OrderRestModel, error)
 	UpdateOrder(entity.Order) (*entity.Order, error)
-	UpdateOrderStock(restModel.OrderRestModal) (string, error)
+	UpdateOrderStock(restModel.OrderRestModel) (string, error)
 	DeleteOrder(string) error
 }

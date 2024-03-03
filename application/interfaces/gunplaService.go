@@ -7,7 +7,7 @@ import (
 
 type GunplaService interface {
 	GetAllGunplas() ([]*entity.Gunpla, error)
-	AddGunpla(restModel.GunplaRestModal) (*restModel.GunplaRestModal, error)
+	AddGunpla(restModel.GunplaRestModel) (*restModel.GunplaRestModel, error)
 	UpdateGunpla(entity.Gunpla) (*entity.Gunpla, error)
 	// UpdateGunplaStock([]valueObject.Product) (string, error)
 	DeleteGunpla(string) error

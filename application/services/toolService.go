@@ -17,7 +17,7 @@ func CreateToolService(toolRepository repository.ToolRepository) *ToolService {
 func (s *ToolService) GetAllTools() ([]*entity.Tool, error) {
 	return s.toolRepository.GetAllTools()
 }
-func (s *ToolService) AddTool(tool restModel.ToolRestModal) (*restModel.ToolRestModal, error) {
+func (s *ToolService) AddTool(tool restModel.ToolRestModel) (*restModel.ToolRestModel, error) {
 	return s.toolRepository.AddTool(tool)
 }
 func (s *ToolService) UpdateTool(tool entity.Tool) (*entity.Tool, error) {

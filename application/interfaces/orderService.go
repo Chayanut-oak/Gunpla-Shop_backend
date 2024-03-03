@@ -7,7 +7,7 @@ import (
 
 type OrderService interface {
 	GetAllOrders() ([]*entity.Order, error)
-	AddOrder(restModel.OrderRestModal) (*restModel.OrderRestModal, error)
+	AddOrder(restModel.OrderRestModel) (*restModel.OrderRestModel, error)
 	UpdateOrder(entity.Order) (*entity.Order, error)
 	DeleteOrder(string) error
 	CreatePaymentToken(restModel.PaymentRestModel) (string, error)

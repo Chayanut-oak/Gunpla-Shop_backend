@@ -2,7 +2,7 @@ package restModel
 
 import "github.com/Chayanut-oak/Gunpla-Shop_backend/domain/valueObject"
 
-type OrderRestModal struct {
+type OrderRestModel struct {
 	UserId         string                `json:"userId"`
 	Cart           []valueObject.Product `json:"cart"`
 	TotalPrice     int64                 `json:"totalPrice"`

@@ -48,7 +48,7 @@ func (repo *GunplaRepository) GetAllGunplas() ([]*entity.Gunpla, error) {
 	return gunplas, nil
 }
 
-func (repo *GunplaRepository) AddGunpla(gunpla restModel.GunplaRestModal) (*restModel.GunplaRestModal, error) {
+func (repo *GunplaRepository) AddGunpla(gunpla restModel.GunplaRestModel) (*restModel.GunplaRestModel, error) {
 	item, err := attributevalue.MarshalMap(gunpla)
 	item["ProductId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}
 	fmt.Print(item)

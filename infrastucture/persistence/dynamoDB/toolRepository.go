@@ -48,7 +48,7 @@ func (repo *ToolRepository) GetAllTools() ([]*entity.Tool, error) {
 	return tools, nil
 }
 
-func (repo *ToolRepository) AddTool(tool restModel.ToolRestModal) (*restModel.ToolRestModal, error) {
+func (repo *ToolRepository) AddTool(tool restModel.ToolRestModel) (*restModel.ToolRestModel, error) {
 	fmt.Print(tool)
 	item, err := attributevalue.MarshalMap(tool)
 	item["ProductId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}

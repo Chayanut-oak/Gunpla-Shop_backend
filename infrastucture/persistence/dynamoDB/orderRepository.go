@@ -46,7 +46,7 @@ func (repo *OrderRepository) GetAllOrders() ([]*entity.Order, error) {
 	return orders, nil
 }
 
-func (repo *OrderRepository) AddOrder(order restModel.OrderRestModal, orderId string) (*restModel.OrderRestModal, error) {
+func (repo *OrderRepository) AddOrder(order restModel.OrderRestModel, orderId string) (*restModel.OrderRestModel, error) {
 	item, err := attributevalue.MarshalMap(order)
 	currentTime := time.Now().Format(time.DateTime)
 	item["OrderId"] = &types.AttributeValueMemberS{Value: orderId}
@@ -66,7 +66,7 @@ func (repo *OrderRepository) AddOrder(order restModel.OrderRestModal, orderId st
 	}
 	return &order, nil
 }
-func (repo *OrderRepository) UpdateOrderStock(order restModel.OrderRestModal) (string, error) {
+func (repo *OrderRepository) UpdateOrderStock(order restModel.OrderRestModel) (string, error) {
 	// Start a transaction
 	transaction := make([]types.TransactWriteItem, 0, len(order.Cart))
 	for _, item := range order.Cart {

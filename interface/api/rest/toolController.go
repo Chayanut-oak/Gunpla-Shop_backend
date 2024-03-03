@@ -41,7 +41,7 @@ func (controller *ToolController) GetAllToolsHandler(c *gin.Context) {
 }
 
 func (controller *ToolController) AddToolHandler(c *gin.Context) {
-	var tool restModel.ToolRestModal
+	var tool restModel.ToolRestModel
 
 	// Bind the JSON payload from the request body to the Tool struct
 	if err := c.BindJSON(&tool); err != nil {

@@ -1,6 +1,6 @@
 package restModel
 
-type ToolRestModal struct {
+type ToolRestModel struct {
 	Images      []string `json:"images"`
 	Name        string   `json:"name"`
 	Type        string   `json:"type"`
