@@ -10,4 +10,5 @@ type OrderService interface {
 	AddOrder(restModel.OrderRestModal) (*restModel.OrderRestModal, error)
 	UpdateOrder(entity.Order) (*entity.Order, error)
 	DeleteOrder(string) error
+	CreatePaymentToken(restModel.PaymentRestModel) (string, error)
 }

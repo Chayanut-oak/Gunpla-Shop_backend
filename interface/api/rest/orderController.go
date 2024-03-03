@@ -23,6 +23,7 @@ func (oc *OrderController) SetupRoutes(router *gin.Engine) {
 	orderaGroup := router.Group("/order")
 	{
 		orderaGroup.GET("", oc.GetAllOrdersHandler)
+		orderaGroup.POST("/createPaymentToken", oc.CreatePaymentTokenHandler)
 		orderaGroup.POST("/addOrder", oc.AddOrderHandler)
 		orderaGroup.PUT("/updateOrder", oc.UpdateOrderHandler)
 		orderaGroup.DELETE("/deleteOrder/:OrderId", oc.DeleteOrderHandler)
@@ -78,7 +79,7 @@ func (controller *OrderController) UpdateOrderHandler(c *gin.Context) {
 }
 
 func (controller *OrderController) DeleteOrderHandler(c *gin.Context) {
-	OrderId := c.Param("orderId")
+	OrderId := c.Param("OrderId")
 	err := controller.orderService.DeleteOrder(OrderId)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to delete Gunpla item"})
@@ -87,4 +88,19 @@ func (controller *OrderController) DeleteOrderHandler(c *gin.Context) {
 
 	// Respond with the added Gunpla and a success message
 	c.JSON(http.StatusCreated, gin.H{"message": "Gunpla item delete successfully"})
+}
+func (controller *OrderController) CreatePaymentTokenHandler(c *gin.Context) {
+	var payment restModel.PaymentRestModel
+	if err := c.ShouldBindJSON(&payment); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
+	token, err := controller.orderService.CreatePaymentToken(payment)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+		return
+	}
+
+	c.JSON(http.StatusCreated, token)
 }

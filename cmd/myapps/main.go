@@ -6,7 +6,7 @@ import (
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/infrastucture/persistence/dynamoDB"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/interface/api/rest"
-
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -33,6 +33,7 @@ func main() {
 	orderController := rest.CreateOrderController(orderService)
 
 	router := gin.Default()
+	router.Use(cors.Default())
 	gunplaController.SetupRoutes(router)
 	toolController.SetupRoutes(router)
 	orderController.SetupRoutes(router)

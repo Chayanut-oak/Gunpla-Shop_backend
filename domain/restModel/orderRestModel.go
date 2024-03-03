@@ -5,7 +5,8 @@ import "github.com/Chayanut-oak/Gunpla-Shop_backend/domain/valueObject"
 type OrderRestModal struct {
 	UserId         string                `json:"userId"`
 	Cart           []valueObject.Product `json:"cart"`
-	TotalPrice     float64               `json:"totalPrice"`
+	TotalPrice     int64                 `json:"totalPrice"`
 	ShippingMethod string                `json:"shippingMethod"`
 	Address        string                `json:"address"`
+	Token          string                `json:"token"`
 }

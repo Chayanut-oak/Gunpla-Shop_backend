@@ -12,7 +12,6 @@ import (
 	"github.com/aws/aws-sdk-go-v2/feature/dynamodb/attributevalue"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb"
 	"github.com/aws/aws-sdk-go-v2/service/dynamodb/types"
-	"github.com/google/uuid"
 )
 
 type OrderRepository struct {
@@ -47,13 +46,13 @@ func (repo *OrderRepository) GetAllOrders() ([]*entity.Order, error) {
 	return orders, nil
 }
 
-func (repo *OrderRepository) AddOrder(order restModel.OrderRestModal) (*restModel.OrderRestModal, error) {
+func (repo *OrderRepository) AddOrder(order restModel.OrderRestModal, orderId string) (*restModel.OrderRestModal, error) {
 	item, err := attributevalue.MarshalMap(order)
 	currentTime := time.Now().Format(time.DateTime)
-	item["OrderId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}
+	item["OrderId"] = &types.AttributeValueMemberS{Value: orderId}
 	item["OrderDate"] = &types.AttributeValueMemberS{Value: currentTime} // Replace "your_order_date_here" with the actual order date
 	item["Status"] = &types.AttributeValueMemberS{Value: "Pending"}      // Replace "your_status_here" with the actual status
-
+	delete(item, "Token")
 	if err != nil {
 		return nil, err
 	}
@@ -84,7 +83,7 @@ func (repo *OrderRepository) UpdateOrderStock(order restModel.OrderRestModal) (s
 		update := &types.Update{
 			TableName: aws.String(item.Type + "s"),
 			Key:       key,
-			// Update stock with conditional expression to ensure it does not become negative
+			// Update stock with conditional expression to eznsure it does not become negative
 			UpdateExpression:          aws.String("SET Stock = if_not_exists(Stock, :initial) - :quantity"),
 			ExpressionAttributeValues: map[string]types.AttributeValue{":quantity": &types.AttributeValueMemberN{Value: fmt.Sprintf("%d", item.Quantity)}, ":initial": &types.AttributeValueMemberN{Value: "0"}},
 			ConditionExpression:       aws.String("attribute_exists(Stock) and Stock >= :quantity"),
