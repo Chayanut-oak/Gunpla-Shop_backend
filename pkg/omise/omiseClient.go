@@ -29,6 +29,7 @@ func CreateToken(client *omise.Client, payment restModel.PaymentRestModel) (stri
 		Number:          payment.Number,
 		ExpirationMonth: payment.ExpirationMonth,
 		ExpirationYear:  payment.ExpirationYear,
+		SecurityCode:    payment.Cvc,
 	})
 	if err != nil {
 		return "", err
