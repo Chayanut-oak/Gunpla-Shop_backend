@@ -5,7 +5,9 @@ import (
 	"net/http"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services/auth"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/pkg/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,7 +24,7 @@ func CreateUserController(userService interfaces.UserService) *UserController {
 func (gc *UserController) SetupRoutes(router *gin.Engine) {
 	userGroup := router.Group("/user")
 	{
-		userGroup.GET("", gc.GetUserHandler)
+		userGroup.GET("", middleware.AuthMiddleware(&auth.AuthService{}), gc.GetUserHandler)
 		userGroup.POST("/newUser", gc.NewUserHandler)
 		userGroup.POST("/authentication", gc.Authentication)
 	}
@@ -62,7 +64,7 @@ func (controller *UserController) Authentication(c *gin.Context) {
 }
 func (controller *UserController) GetUserHandler(c *gin.Context) {
 	email, exists := c.Get("email")
-	fmt.Print(c.Get("email"))
+	fmt.Print(email)
 	if !exists {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
 		return

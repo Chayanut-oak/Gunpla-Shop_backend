@@ -37,6 +37,7 @@ func (s *AuthService) GenerateToken(email string) (string, error) {
 
 func (s *AuthService) ValidateToken(tokenString string) (string, string, error) {
 	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		fmt.Print(token)
 		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 			return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 		}
@@ -57,8 +58,9 @@ func (s *AuthService) ValidateToken(tokenString string) (string, string, error) 
 		if !ok {
 			return "", "", errors.New("iss not found in token claims")
 		}
-
+		fmt.Print(email, iss, nil)
 		return email, iss, nil
+
 	}
 
 	return "", "", errors.New("invalid token claims")
