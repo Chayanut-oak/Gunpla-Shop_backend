@@ -39,7 +39,7 @@ func S3Uploader(filePath string) {
 		o.UsePathStyle = true
 	})
 
-	bucketName := "kro-gamestore"
+	bucketName := "don-gunpla-store"
 	objectKey := uuid.NewString()
 
 	file, err := os.Open(filePath)
