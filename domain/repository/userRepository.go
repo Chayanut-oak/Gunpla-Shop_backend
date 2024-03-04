@@ -1,0 +1,12 @@
+package repository
+
+import (
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+)
+
+type UserRepository interface {
+	NewUser(restModel.UserRestModel) (string, error)
+	AuthenticateUser(string, string) (bool, error)
+	GetUserByEmail(string) (*entity.User, error)
+}

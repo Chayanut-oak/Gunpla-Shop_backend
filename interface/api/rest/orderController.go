@@ -5,8 +5,10 @@ import (
 	"net/http"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services/auth"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/pkg/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,6 +24,7 @@ func CreateOrderController(orderService interfaces.OrderService) *OrderControlle
 func (oc *OrderController) SetupRoutes(router *gin.Engine) {
 	orderaGroup := router.Group("/order")
 	{
+		orderaGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
 		orderaGroup.GET("", oc.GetAllOrdersHandler)
 		orderaGroup.POST("/createPaymentToken", oc.CreatePaymentTokenHandler)
 		orderaGroup.POST("/addOrder", oc.AddOrderHandler)

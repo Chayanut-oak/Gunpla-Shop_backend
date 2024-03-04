@@ -5,8 +5,10 @@ import (
 	"net/http"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services/auth"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/pkg/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,6 +24,7 @@ func CreateGunplaController(gunplaService interfaces.GunplaService) *GunplaContr
 func (gc *GunplaController) SetupRoutes(router *gin.Engine) {
 	gunplaGroup := router.Group("/gunpla")
 	{
+		gunplaGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
 		gunplaGroup.GET("", gc.GetAllGunplasHandler)
 		gunplaGroup.POST("/addGunpla", gc.AddGunplaHandler)
 		gunplaGroup.PUT("/updateGunpla", gc.UpdateGunplaHandler)

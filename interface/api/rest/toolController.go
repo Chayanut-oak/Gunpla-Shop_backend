@@ -5,8 +5,10 @@ import (
 	"net/http"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services/auth"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/pkg/middleware"
 	"github.com/gin-gonic/gin"
 )
 
@@ -22,6 +24,7 @@ func CreateToolController(toolService interfaces.ToolService) *ToolController {
 func (gc *ToolController) SetupRoutes(router *gin.Engine) {
 	toolGroup := router.Group("/tool")
 	{
+		toolGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
 		toolGroup.GET("", gc.GetAllToolsHandler)
 		toolGroup.POST("/addTool", gc.AddToolHandler)
 		toolGroup.PUT("/updateTool", gc.UpdateToolHandler)

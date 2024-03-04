@@ -8,7 +8,7 @@ type Gunpla struct {
 	Series      string   `json:"series"`
 	Scale       string   `json:"scale"`
 	Grade       string   `json:"grade"`
-	Price       float64  `json:"price"`
+	Price       int64    `json:"price"`
 	Stock       int      `json:"stock"`
 	Description string   `json:"description"`
 }
