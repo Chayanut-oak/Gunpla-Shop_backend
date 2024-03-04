@@ -35,8 +35,16 @@ func main() {
 	toolController := rest.CreateToolController(toolService)
 	orderController := rest.CreateOrderController(orderService)
 	userController := rest.CreateUserController(userService)
+
 	router := gin.Default()
-	router.Use(cors.Default())
+
+	config := cors.DefaultConfig()
+	config.AllowOrigins = []string{"http://localhost:3000"}
+	config.AllowMethods = []string{"GET", "POST", "PUT", "OPTIONS"}
+	config.AllowHeaders = []string{"Authorization", "Content-Type"}
+
+	router.Use(cors.New(config))
+
 	gunplaController.SetupRoutes(router)
 	toolController.SetupRoutes(router)
 	orderController.SetupRoutes(router)
