@@ -33,16 +33,16 @@ func (s *UserService) NewUser(user restModel.UserRestModel) (string, error) {
 	}
 	return token, nil
 }
-func (s *UserService) AuthenticateUser(email, password string) (string, error) {
-	_, err := s.userRepository.AuthenticateUser(email, password)
+func (s *UserService) AuthenticateUser(email, password string) (string, *entity.User, error) {
+	user, err := s.userRepository.AuthenticateUser(email, password)
 	if err != nil {
-		return "", fmt.Errorf(err.Error())
+		return "", nil, fmt.Errorf(err.Error())
 	}
 	token, err := s.authService.GenerateToken(email)
 	if err != nil {
-		return "", fmt.Errorf(err.Error())
+		return "", nil, fmt.Errorf(err.Error())
 	}
-	return token, nil
+	return token, user, nil
 }
 func (s *UserService) GetUser(email string) (*entity.User, error) {
 	return s.userRepository.GetUserByEmail(email)

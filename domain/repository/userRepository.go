@@ -7,6 +7,6 @@ import (
 
 type UserRepository interface {
 	NewUser(restModel.UserRestModel) (string, error)
-	AuthenticateUser(string, string) (bool, error)
+	AuthenticateUser(string, string) (*entity.User, error)
 	GetUserByEmail(string) (*entity.User, error)
 }

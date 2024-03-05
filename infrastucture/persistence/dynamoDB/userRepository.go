@@ -63,36 +63,36 @@ func (repo *UserRepository) NewUser(user restModel.UserRestModel) (string, error
 
 	return user.Email, nil
 }
-func (repo *UserRepository) AuthenticateUser(email, password string) (bool, error) {
+func (repo *UserRepository) AuthenticateUser(email, password string) (*entity.User, error) {
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
 	isValid := emailRegex.MatchString(email)
 
 	if !isValid {
 		errMsg := fmt.Sprintf("Invalid email address: %s", email)
-		return false, fmt.Errorf(errMsg)
+		return nil, fmt.Errorf(errMsg)
 	}
 
 	result, err := repo.GetUserByEmail(email)
 
 	if err != nil {
-		return false, err
+		return nil, err
 	}
 
 	if result == nil {
-		return false, errors.New("user not found")
+		return nil, errors.New("user not found")
 	}
 
 	hashedPassword := result.Password
 	if hashedPassword == "" {
-		return false, errors.New("password not found in user record")
+		return nil, errors.New("password not found in user record")
 	}
 
 	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	if err != nil {
-		return false, err
+		return nil, err
 	}
 
-	return true, nil
+	return result, nil
 }
 
 func (repo *UserRepository) GetUserByEmail(email string) (*entity.User, error) {

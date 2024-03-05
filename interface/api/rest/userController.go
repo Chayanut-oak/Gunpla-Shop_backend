@@ -6,6 +6,7 @@ import (
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/services/auth"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/restModel"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/pkg/middleware"
 	"github.com/gin-gonic/gin"
@@ -13,6 +14,10 @@ import (
 
 type UserController struct {
 	userService interfaces.UserService
+}
+type AuthResponse struct {
+	Token string       `json:"token"`
+	User  *entity.User `json:"user"`
 }
 
 func CreateUserController(userService interfaces.UserService) *UserController {
@@ -42,7 +47,7 @@ func (controller *UserController) NewUserHandler(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create new user"})
 		return
 	}
-	c.JSON(http.StatusCreated, gin.H{"message": "User created successfully", "user": res})
+	c.JSON(http.StatusCreated, res)
 }
 
 func (controller *UserController) Authentication(c *gin.Context) {
@@ -55,12 +60,17 @@ func (controller *UserController) Authentication(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	token, err := controller.userService.AuthenticateUser(authRequest.Email, authRequest.Password)
+	token, user, err := controller.userService.AuthenticateUser(authRequest.Email, authRequest.Password)
 	if err != nil {
 		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
 		return
 	}
-	c.JSON(http.StatusOK, token)
+	response := AuthResponse{
+		Token: token,
+		User:  user,
+	}
+	c.JSON(http.StatusOK, response)
+
 }
 func (controller *UserController) GetUserHandler(c *gin.Context) {
 	email, exists := c.Get("email")
