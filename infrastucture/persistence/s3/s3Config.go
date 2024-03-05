@@ -2,18 +2,26 @@ package s3
 
 import (
 	"context"
+	"fmt"
 	"log"
-	"os"
+	"net/http"
 
 	"github.com/aws/aws-sdk-go-v2/aws"
 	"github.com/aws/aws-sdk-go-v2/config"
 	"github.com/aws/aws-sdk-go-v2/service/s3"
+	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
 )
 
-func S3Uploader(filePath string) {
+func S3uploader(c *gin.Context) {
 	awsEndpoint := "http://localhost:4566"
 	awsRegion := "us-east-1"
+
+	err := c.Request.ParseMultipartForm(10 << 20) // 10MB max file size
+	if err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
 	customResolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		if awsEndpoint != "" {
@@ -40,22 +48,34 @@ func S3Uploader(filePath string) {
 	})
 
 	bucketName := "don-gunpla-store"
-	objectKey := uuid.NewString()
 
-	file, err := os.Open(filePath)
-	if err != nil {
-		log.Fatalf("Error opening file: %v", err)
+	var imageUrls []string // Slice to hold image URLs
+
+	fmt.Println(c.Request.MultipartForm.File)
+	for _, files := range c.Request.MultipartForm.File {
+
+		for _, file := range files {
+			objectKey := uuid.NewString() + ".png"
+			// Open the uploaded file
+			src, err := file.Open()
+			if err != nil {
+				c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
+				return
+			}
+			defer src.Close()
+			_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
+				Bucket: &bucketName,
+				Key:    &objectKey,
+				Body:   src,
+			})
+			if err != nil {
+				log.Fatalf("Error uploading picture: %v", err)
+			}
+			// Append the URL of the uploaded image to imageUrls
+
+			imageUrls = append(imageUrls, fmt.Sprintf("%s/%s/%s", awsEndpoint, bucketName, objectKey))
+		}
 	}
-	defer file.Close()
 
-	_, err = client.PutObject(context.TODO(), &s3.PutObjectInput{
-		Bucket: &bucketName,
-		Key:    &objectKey,
-		Body:   file,
-	})
-	if err != nil {
-		log.Fatalf("Error uploading picture: %v", err)
-	}
-
-	log.Printf("Picture uploaded successfully to S3://%s/%s", bucketName, objectKey)
+	c.JSON(http.StatusOK, gin.H{"imageUrls": imageUrls})
 }

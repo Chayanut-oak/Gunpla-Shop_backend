@@ -24,8 +24,8 @@ func CreateGunplaController(gunplaService interfaces.GunplaService) *GunplaContr
 func (gc *GunplaController) SetupRoutes(router *gin.Engine) {
 	gunplaGroup := router.Group("/gunpla")
 	{
-		gunplaGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
 		gunplaGroup.GET("", gc.GetAllGunplasHandler)
+		gunplaGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
 		gunplaGroup.POST("/addGunpla", gc.AddGunplaHandler)
 		gunplaGroup.PUT("/updateGunpla", gc.UpdateGunplaHandler)
 		gunplaGroup.DELETE("/deleteGunpla/:productId", gc.DeleteGunplaHandler)
