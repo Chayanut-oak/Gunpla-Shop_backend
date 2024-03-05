@@ -42,14 +42,12 @@ func (repo *ToolRepository) GetAllTools() ([]*entity.Tool, error) {
 			return nil, err
 		}
 		tools = append(tools, &tool)
-		fmt.Println(tools)
 	}
-	fmt.Println(tools)
 	return tools, nil
 }
 
 func (repo *ToolRepository) AddTool(tool restModel.ToolRestModel) (*restModel.ToolRestModel, error) {
-	fmt.Print(tool)
+	// fmt.Print(tool)
 	item, err := attributevalue.MarshalMap(tool)
 	item["ProductId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}
 	fmt.Print(item)
@@ -70,7 +68,6 @@ func (repo *ToolRepository) AddTool(tool restModel.ToolRestModel) (*restModel.To
 
 func (repo *ToolRepository) UpdateTool(tool entity.Tool) (*entity.Tool, error) {
 	item, err := attributevalue.MarshalMap(tool)
-	fmt.Print(item)
 	if err != nil {
 		return nil, err
 	}

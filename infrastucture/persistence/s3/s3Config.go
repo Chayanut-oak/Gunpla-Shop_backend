@@ -16,13 +16,16 @@ import (
 func S3uploader(c *gin.Context) {
 	awsEndpoint := "http://localhost:4566"
 	awsRegion := "us-east-1"
+	fmt.Println(c.Request)
 
 	err := c.Request.ParseMultipartForm(10 << 20) // 10MB max file size
+	fmt.Println(err)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
 
+	fmt.Println("2")
 	customResolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		if awsEndpoint != "" {
 			return aws.Endpoint{
@@ -43,6 +46,7 @@ func S3uploader(c *gin.Context) {
 		log.Fatalf("Cannot load the AWS configs: %s", err)
 	}
 
+	fmt.Println("1")
 	client := s3.NewFromConfig(awsCfg, func(o *s3.Options) {
 		o.UsePathStyle = true
 	})

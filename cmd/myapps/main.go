@@ -8,6 +8,7 @@ import (
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/infrastucture/persistence/dynamoDB"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/infrastucture/persistence/s3"
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/interface/api/rest"
+	"github.com/Chayanut-oak/Gunpla-Shop_backend/pkg/middleware"
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
@@ -50,7 +51,7 @@ func main() {
 	toolController.SetupRoutes(router)
 	orderController.SetupRoutes(router)
 	userController.SetupRoutes(router)
-	router.POST("/s3/upload-image", s3.S3uploader )
+	router.POST("/s3/upload-image", middleware.AuthMiddleware(&auth.AuthService{}), s3.S3uploader)
 	err = router.Run(":8080")
 	if err != nil {
 		fmt.Printf("Error starting server: %v\n", err)

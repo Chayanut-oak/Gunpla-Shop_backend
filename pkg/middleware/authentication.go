@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"fmt"
 	"net/http"
 	"strings"
 
@@ -19,7 +18,7 @@ func AuthMiddleware(authService *auth.AuthService) gin.HandlerFunc {
 		}
 
 		email, _, err := authService.ValidateToken(tokenString)
-		fmt.Print(email)
+		// fmt.Print(email)
 		if err != nil {
 			c.AbortWithStatusJSON(http.StatusUnauthorized, gin.H{"error": "Unauthorized"})
 			return

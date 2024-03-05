@@ -8,7 +8,7 @@ import (
 
 type Order struct {
 	OrderId        string                `json:"orderId"`
-	UserId         string                `json:"userId"`
+	Email          string                `json:"email"`
 	Cart           []valueObject.Product `json:"cart"`
 	TotalPrice     int64                 `json:"totalPrice"`
 	Status         string                `json:"status"`
