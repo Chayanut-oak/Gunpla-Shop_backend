@@ -32,6 +32,7 @@ func (gc *UserController) SetupRoutes(router *gin.Engine) {
 		userGroup.GET("", middleware.AuthMiddleware(&auth.AuthService{}), gc.GetUserHandler)
 		userGroup.POST("/newUser", gc.NewUserHandler)
 		userGroup.POST("/authentication", gc.Authentication)
+		userGroup.GET("/allUser", middleware.AuthMiddleware(&auth.AuthService{}), gc.GetAllUserHandler)
 	}
 }
 
@@ -87,4 +88,14 @@ func (controller *UserController) GetUserHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, user)
+}
+func (controller *UserController) GetAllUserHandler(c *gin.Context) {
+
+	allUser, err := controller.userService.GetAllUser()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch Customer"})
+		return
+	}
+
+	c.JSON(http.StatusOK, allUser)
 }

@@ -117,3 +117,26 @@ func (repo *UserRepository) GetUserByEmail(email string) (*entity.User, error) {
 
 	return &user, nil
 }
+
+func (repo *UserRepository) GetAllUser() ([]*entity.User, error) {
+
+	input := &dynamodb.ScanInput{
+		TableName: aws.String("Users"),
+	}
+	result, err := repo.Client.Scan(context.TODO(), input)
+	if err != nil {
+		return nil, fmt.Errorf("failed to scan DynamoDB table: %v", err)
+	}
+	var allUser []*entity.User
+	for _, item := range result.Items {
+		var user entity.User
+		err := attributevalue.UnmarshalMap(item, &user)
+		if err != nil {
+			return nil, err
+		}
+		allUser = append(allUser, &user)
+
+	}
+
+	return allUser, nil
+}

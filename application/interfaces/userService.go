@@ -9,4 +9,5 @@ type UserService interface {
 	NewUser(restModel.UserRestModel) (string, error)
 	AuthenticateUser(string, string) (string, *entity.User, error)
 	GetUser(string) (*entity.User, error)
+	GetAllUser() ([]*entity.User, error)
 }

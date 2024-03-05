@@ -47,3 +47,6 @@ func (s *UserService) AuthenticateUser(email, password string) (string, *entity.
 func (s *UserService) GetUser(email string) (*entity.User, error) {
 	return s.userRepository.GetUserByEmail(email)
 }
+func (s *UserService) GetAllUser() ([]*entity.User, error) {
+	return s.userRepository.GetAllUser()
+}
