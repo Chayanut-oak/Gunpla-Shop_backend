@@ -22,12 +22,12 @@ func CreateUserService(userRepository repository.UserRepository, authService aut
 }
 
 func (s *UserService) NewUser(user restModel.UserRestModel) (string, error) {
-	email, err := s.userRepository.NewUser(user)
+	email, role, err := s.userRepository.NewUser(user)
 	fmt.Println(email)
 	if err != nil {
 		return "", err
 	}
-	token, err := s.authService.GenerateToken(user.Email)
+	token, err := s.authService.GenerateToken(user.Email, role)
 	if err != nil {
 		return "", err
 	}
@@ -38,7 +38,7 @@ func (s *UserService) AuthenticateUser(email, password string) (string, *entity.
 	if err != nil {
 		return "", nil, fmt.Errorf(err.Error())
 	}
-	token, err := s.authService.GenerateToken(email)
+	token, err := s.authService.GenerateToken(email, user.Role)
 	if err != nil {
 		return "", nil, fmt.Errorf(err.Error())
 	}

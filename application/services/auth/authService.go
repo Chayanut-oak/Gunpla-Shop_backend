@@ -21,10 +21,10 @@ func init() {
 
 type AuthService struct{}
 
-func (s *AuthService) GenerateToken(email string) (string, error) {
+func (s *AuthService) GenerateToken(email, role string) (string, error) {
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"sub": email,
-		"iss": "your-issuer",
+		"sub":  email,
+		"role": role,
 	})
 
 	signedToken, err := token.SignedString(secretKey)
@@ -54,12 +54,12 @@ func (s *AuthService) ValidateToken(tokenString string) (string, string, error) 
 		if !ok {
 			return "", "", errors.New("user ID not found in token claims")
 		}
-		iss, ok := claims["iss"].(string)
+		role, ok := claims["role"].(string)
 		if !ok {
-			return "", "", errors.New("iss not found in token claims")
+			return "", "", errors.New("role not found in token claims")
 		}
-		// fmt.Print(email, iss, nil)
-		return email, iss, nil
+		// fmt.Print(email, role, nil)
+		return email, role, nil
 
 	}
 

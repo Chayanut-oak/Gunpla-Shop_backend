@@ -31,24 +31,24 @@ func hashPassword(password string) (string, error) {
 	return string(hashedPassword), nil
 }
 
-func (repo *UserRepository) NewUser(user restModel.UserRestModel) (string, error) {
+func (repo *UserRepository) NewUser(user restModel.UserRestModel) (string, string, error) {
 	hashedPassword, err := hashPassword(user.Password)
 
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
 	isValid := emailRegex.MatchString(user.Email)
 
 	if !isValid {
 		errMsg := fmt.Sprintf("Invalid email address: %s", user.Email)
-		return errMsg, fmt.Errorf(errMsg)
+		return errMsg, "", fmt.Errorf(errMsg)
 	}
 	user.Password = hashedPassword
 	user.Role = "customer"
 	item, err := attributevalue.MarshalMap(user)
 	if err != nil {
-		return "", err
+		return "", "", err
 	}
 
 	_, err = repo.Client.PutItem(context.Background(), &dynamodb.PutItemInput{
@@ -58,10 +58,10 @@ func (repo *UserRepository) NewUser(user restModel.UserRestModel) (string, error
 	})
 	if err != nil {
 		fmt.Printf("Couldn't Create User to table. Here's why: %v\n", err)
-		return "", err
+		return "", "", err
 	}
 
-	return user.Email, nil
+	return user.Email, user.Role, nil
 }
 func (repo *UserRepository) AuthenticateUser(email, password string) (*entity.User, error) {
 	emailRegex := regexp.MustCompile(`^[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,4}$`)
