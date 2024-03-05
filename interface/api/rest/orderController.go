@@ -1,7 +1,6 @@
 package rest
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/application/interfaces"
@@ -35,7 +34,6 @@ func (oc *OrderController) SetupRoutes(router *gin.Engine) {
 
 func (controller *OrderController) GetAllOrdersHandler(c *gin.Context) {
 	orders, err := controller.orderService.GetAllOrders()
-	fmt.Println("from controller: ", orders)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to fetch orders"})
 		return

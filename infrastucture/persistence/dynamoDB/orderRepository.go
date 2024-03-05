@@ -33,16 +33,13 @@ func (repo *OrderRepository) GetAllOrders() ([]*entity.Order, error) {
 	}
 	var orders []*entity.Order
 	for _, item := range result.Items {
-		fmt.Println(item)
 		var order entity.Order
 		err := attributevalue.UnmarshalMap(item, &order)
 		if err != nil {
 			return nil, err
 		}
 		orders = append(orders, &order)
-		fmt.Println(orders)
 	}
-	fmt.Println(orders)
 	return orders, nil
 }
 

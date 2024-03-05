@@ -16,7 +16,7 @@ import (
 func S3uploader(c *gin.Context) {
 	awsEndpoint := "http://localhost:4566"
 	awsRegion := "us-east-1"
-	fmt.Println(c.Request)
+	// fmt.Println(c.Request)
 
 	err := c.Request.ParseMultipartForm(10 << 20) // 10MB max file size
 	fmt.Println(err)
@@ -25,7 +25,7 @@ func S3uploader(c *gin.Context) {
 		return
 	}
 
-	fmt.Println("2")
+	// fmt.Println("2")
 	customResolver := aws.EndpointResolverWithOptionsFunc(func(service, region string, options ...interface{}) (aws.Endpoint, error) {
 		if awsEndpoint != "" {
 			return aws.Endpoint{

@@ -35,7 +35,6 @@ func (repo *ToolRepository) GetAllTools() ([]*entity.Tool, error) {
 	}
 	var tools []*entity.Tool
 	for _, item := range result.Items {
-		fmt.Println(item)
 		var tool entity.Tool
 		err := attributevalue.UnmarshalMap(item, &tool)
 		if err != nil {
@@ -50,7 +49,6 @@ func (repo *ToolRepository) AddTool(tool restModel.ToolRestModel) (*restModel.To
 	// fmt.Print(tool)
 	item, err := attributevalue.MarshalMap(tool)
 	item["ProductId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}
-	fmt.Print(item)
 	if err != nil {
 		return nil, err
 	}

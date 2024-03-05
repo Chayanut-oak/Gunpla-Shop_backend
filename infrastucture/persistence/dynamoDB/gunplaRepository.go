@@ -42,16 +42,13 @@ func (repo *GunplaRepository) GetAllGunplas() ([]*entity.Gunpla, error) {
 			return nil, err
 		}
 		gunplas = append(gunplas, &gunpla)
-		fmt.Println(gunplas)
 	}
-	fmt.Println(gunplas)
 	return gunplas, nil
 }
 
 func (repo *GunplaRepository) AddGunpla(gunpla restModel.GunplaRestModel) (*restModel.GunplaRestModel, error) {
 	item, err := attributevalue.MarshalMap(gunpla)
 	item["ProductId"] = &types.AttributeValueMemberS{Value: uuid.NewString()}
-	fmt.Print(item)
 	if err != nil {
 		return nil, err
 	}
