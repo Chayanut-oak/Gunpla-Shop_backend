@@ -89,7 +89,7 @@ func (repo *UserRepository) AuthenticateUser(email, password string) (bool, erro
 
 	err = bcrypt.CompareHashAndPassword([]byte(hashedPassword), []byte(password))
 	if err != nil {
-		return false, nil
+		return false, err
 	}
 
 	return true, nil
