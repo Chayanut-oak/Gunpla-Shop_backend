@@ -147,7 +147,7 @@ func (repo *OrderRepository) UpdateOrderStock(order restModel.OrderRestModel) (s
 
 func (repo *OrderRepository) UpdateOrder(order entity.Order) (*entity.Order, error) {
 	item, err := attributevalue.MarshalMap(order)
-	fmt.Print(item)
+
 	if err != nil {
 		return nil, err
 	}
@@ -159,6 +159,46 @@ func (repo *OrderRepository) UpdateOrder(order entity.Order) (*entity.Order, err
 	if err != nil {
 		log.Printf("Couldn't add item to table. Here's why: %v\n", err)
 		return nil, err
+	}
+	if order.Status == "Cancel" {
+		transaction := make([]types.TransactWriteItem, 0, len(order.Cart))
+		for _, item := range order.Cart {
+			// fmt.Println(item)
+			// Marshal the key for the update operation
+			key, err := attributevalue.MarshalMap(map[string]string{
+				"ProductId": item.ProductId,
+			})
+			if err != nil {
+				return nil, fmt.Errorf("failed to marshal key: %v", err)
+			}
+
+			// Define the update operation
+			update := &types.Update{
+				TableName: aws.String(item.Type + "s"),
+				Key:       key,
+				// Update stock with conditional expression to eznsure it does not become negative
+				UpdateExpression:          aws.String("SET Stock = if_not_exists(Stock, :initial) + :quantity"),
+				ExpressionAttributeValues: map[string]types.AttributeValue{":quantity": &types.AttributeValueMemberN{Value: fmt.Sprintf("%d", item.Quantity)}, ":initial": &types.AttributeValueMemberN{Value: "0"}},
+				ConditionExpression:       aws.String("attribute_exists(Stock) and Stock >= :quantity"),
+			}
+
+			// Add the update operation to the transaction
+			transaction = append(transaction, types.TransactWriteItem{Update: update})
+		}
+
+		// If no valid updates were added to the transaction, return nil
+		if len(transaction) == 0 {
+			return nil, err
+		}
+
+		// Execute the transaction
+		_, err := repo.Client.TransactWriteItems(context.TODO(), &dynamodb.TransactWriteItemsInput{
+			TransactItems: transaction,
+		})
+		if err != nil {
+			log.Printf("Failed to execute transaction: %v", err)
+			return nil, fmt.Errorf("transaction failed: %v", err)
+		}
 	}
 	return &order, nil
 }
