@@ -25,17 +25,20 @@ func main() {
 	toolRepo := dynamoDB.CreateToolRepository(dbClient.Client)
 	orderRepo := dynamoDB.CreateOrderRepository(dbClient.Client)
 	userRepo := dynamoDB.CreateUserRepository(dbClient.Client)
+	forumRepo := dynamoDB.CreateForumRepository(dbClient.Client)
 
 	gunplaService := services.CreateGunplaService(gunplaRepo)
 	toolService := services.CreateToolService(toolRepo)
 	orderService := services.CreateOrderService(orderRepo)
 	userService := services.CreateUserService(userRepo, auth.AuthService{})
+	forumService := services.CreateForumService(forumRepo)
 	// orderService := services.CreateOrderService(orderRepo, gunplaRepo, toolRepo)
 
 	gunplaController := rest.CreateGunplaController(gunplaService)
 	toolController := rest.CreateToolController(toolService)
 	orderController := rest.CreateOrderController(orderService)
 	userController := rest.CreateUserController(userService)
+	forumController := rest.CreateForumController(forumService)
 
 	router := gin.Default()
 
@@ -50,6 +53,7 @@ func main() {
 	toolController.SetupRoutes(router)
 	orderController.SetupRoutes(router)
 	userController.SetupRoutes(router)
+	forumController.SetupRoutes(router)
 	router.POST("/s3/upload-image", s3.S3uploader)
 	err = router.Run(":8080")
 	if err != nil {
