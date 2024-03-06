@@ -4,6 +4,7 @@ import (
 	"context"
 	"errors"
 	"fmt"
+	"log"
 	"regexp"
 
 	"github.com/Chayanut-oak/Gunpla-Shop_backend/domain/entity"
@@ -139,4 +140,22 @@ func (repo *UserRepository) GetAllUser() ([]*entity.User, error) {
 	}
 
 	return allUser, nil
+}
+func (repo *UserRepository) DeleteUser(email string) error {
+	key, err := attributevalue.MarshalMap(map[string]string{
+		"Email": email,
+	})
+
+	if err != nil {
+		return err
+	}
+	_, err = repo.Client.DeleteItem(context.Background(), &dynamodb.DeleteItemInput{
+		TableName: aws.String("Users"), Key: key,
+	})
+
+	if err != nil {
+		log.Printf("Couldn't delete item in table. Here's why: %v\n", err)
+		return err
+	}
+	return err
 }

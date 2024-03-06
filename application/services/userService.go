@@ -50,3 +50,6 @@ func (s *UserService) GetUser(email string) (*entity.User, error) {
 func (s *UserService) GetAllUser() ([]*entity.User, error) {
 	return s.userRepository.GetAllUser()
 }
+func (s *UserService) DeleteUser(email string) error {
+	return s.userRepository.DeleteUser(email)
+}

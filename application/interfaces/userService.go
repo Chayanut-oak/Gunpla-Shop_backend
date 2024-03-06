@@ -10,4 +10,5 @@ type UserService interface {
 	AuthenticateUser(string, string) (string, *entity.User, error)
 	GetUser(string) (*entity.User, error)
 	GetAllUser() ([]*entity.User, error)
+	DeleteUser(string) error
 }

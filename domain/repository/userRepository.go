@@ -10,4 +10,5 @@ type UserRepository interface {
 	AuthenticateUser(string, string) (*entity.User, error)
 	GetUserByEmail(string) (*entity.User, error)
 	GetAllUser() ([]*entity.User, error)
+	DeleteUser(string) error
 }
