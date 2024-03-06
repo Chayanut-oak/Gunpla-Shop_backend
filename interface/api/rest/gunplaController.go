@@ -45,7 +45,16 @@ func (controller *GunplaController) GetAllGunplasHandler(c *gin.Context) {
 
 func (controller *GunplaController) AddGunplaHandler(c *gin.Context) {
 	var gunpla restModel.GunplaRestModel
-
+	role, exists := c.Get("role")
+	fmt.Print(role)
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	// Bind the JSON payload from the request body to the Gunpla struct
 	if err := c.BindJSON(&gunpla); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
@@ -64,7 +73,16 @@ func (controller *GunplaController) AddGunplaHandler(c *gin.Context) {
 }
 func (controller *GunplaController) UpdateGunplaHandler(c *gin.Context) {
 	var gunpla entity.Gunpla
-
+	role, exists := c.Get("role")
+	fmt.Print(role)
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	// Bind the JSON payload from the request body to the Gunpla struct
 	if err := c.BindJSON(&gunpla); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
@@ -82,6 +100,15 @@ func (controller *GunplaController) UpdateGunplaHandler(c *gin.Context) {
 }
 
 func (controller *GunplaController) DeleteGunplaHandler(c *gin.Context) {
+	role, exists := c.Get("role")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	ProductId := c.Param("productId")
 	err := controller.gunplaService.DeleteGunpla(ProductId)
 	if err != nil {

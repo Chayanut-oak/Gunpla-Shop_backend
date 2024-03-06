@@ -45,7 +45,15 @@ func (controller *ToolController) GetAllToolsHandler(c *gin.Context) {
 
 func (controller *ToolController) AddToolHandler(c *gin.Context) {
 	var tool restModel.ToolRestModel
-
+	role, exists := c.Get("role")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	// Bind the JSON payload from the request body to the Tool struct
 	if err := c.BindJSON(&tool); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
@@ -64,7 +72,15 @@ func (controller *ToolController) AddToolHandler(c *gin.Context) {
 }
 func (controller *ToolController) UpdateToolHandler(c *gin.Context) {
 	var tool entity.Tool
-
+	role, exists := c.Get("role")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	// Bind the JSON payload from the request body to the Tool struct
 	if err := c.BindJSON(&tool); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
@@ -82,6 +98,15 @@ func (controller *ToolController) UpdateToolHandler(c *gin.Context) {
 }
 
 func (controller *ToolController) DeleteToolHandler(c *gin.Context) {
+	role, exists := c.Get("role")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	ProductId := c.Param("productId")
 	err := controller.toolService.DeleteTool(ProductId)
 	if err != nil {

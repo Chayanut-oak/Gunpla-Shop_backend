@@ -62,7 +62,6 @@ func (controller *OrderController) AddOrderHandler(c *gin.Context) {
 }
 func (controller *OrderController) UpdateOrderHandler(c *gin.Context) {
 	var order entity.Order
-
 	// Bind the JSON payload from the request body to the order struct
 	if err := c.BindJSON(&order); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
@@ -80,6 +79,15 @@ func (controller *OrderController) UpdateOrderHandler(c *gin.Context) {
 }
 
 func (controller *OrderController) DeleteOrderHandler(c *gin.Context) {
+	role, exists := c.Get("role")
+	if !exists {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "User not found in context"})
+		return
+	}
+	if role != "admin" {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "You don't have permission"})
+		return
+	}
 	OrderId := c.Param("OrderId")
 	err := controller.orderService.DeleteOrder(OrderId)
 	if err != nil {
