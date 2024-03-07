@@ -11,4 +11,5 @@ type UserService interface {
 	GetUser(string) (*entity.User, error)
 	GetAllUser() ([]*entity.User, error)
 	DeleteUser(string) error
+	EditUser(entity.User) (*entity.User, error)
 }

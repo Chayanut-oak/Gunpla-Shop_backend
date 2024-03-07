@@ -28,12 +28,15 @@ func CreateUserController(userService interfaces.UserService) *UserController {
 
 func (gc *UserController) SetupRoutes(router *gin.Engine) {
 	userGroup := router.Group("/user")
+
 	{
-		userGroup.GET("", middleware.AuthMiddleware(&auth.AuthService{}), gc.GetUserHandler)
 		userGroup.POST("/newUser", gc.NewUserHandler)
 		userGroup.POST("/authentication", gc.Authentication)
-		userGroup.GET("/allUser", middleware.AuthMiddleware(&auth.AuthService{}), gc.GetAllUserHandler)
-		userGroup.DELETE("/deleteUser/:email", middleware.AuthMiddleware(&auth.AuthService{}), gc.DeleteUserHandler)
+		userGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
+		userGroup.GET("", gc.GetUserHandler)
+		userGroup.GET("/allUser", gc.GetAllUserHandler)
+		userGroup.DELETE("/deleteUser/:email", gc.DeleteUserHandler)
+		userGroup.PUT("/editUser", gc.EditUserHandler)
 	}
 }
 
@@ -110,4 +113,20 @@ func (controller *UserController) DeleteUserHandler(c *gin.Context) {
 	}
 
 	c.JSON(http.StatusOK, "success")
+}
+func (controller *UserController) EditUserHandler(c *gin.Context) {
+	var user entity.User
+
+	if err := c.BindJSON(&user); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "Invalid JSON payload"})
+		return
+	}
+
+	res, err := controller.userService.EditUser(user)
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to update User"})
+		return
+	}
+
+	c.JSON(http.StatusCreated, gin.H{"message": "Edit user success", "user": res})
 }

@@ -159,3 +159,20 @@ func (repo *UserRepository) DeleteUser(email string) error {
 	}
 	return err
 }
+func (repo *UserRepository) EditUser(user entity.User) (*entity.User, error) {
+	item, err := attributevalue.MarshalMap(user)
+	fmt.Print(item)
+	if err != nil {
+		return nil, err
+	}
+
+	_, err = repo.Client.PutItem(context.Background(), &dynamodb.PutItemInput{
+		TableName: aws.String("Users"),
+		Item:      item,
+	})
+	if err != nil {
+		log.Printf("Couldn't add item to table. Here's why: %v\n", err)
+		return nil, err
+	}
+	return &user, nil
+}

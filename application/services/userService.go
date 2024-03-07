@@ -53,3 +53,6 @@ func (s *UserService) GetAllUser() ([]*entity.User, error) {
 func (s *UserService) DeleteUser(email string) error {
 	return s.userRepository.DeleteUser(email)
 }
+func (s *UserService) EditUser(user entity.User) (*entity.User, error) {
+	return s.userRepository.EditUser(user)
+}
