@@ -22,7 +22,7 @@ func CreateGunplaController(gunplaService interfaces.GunplaService) *GunplaContr
 	}
 }
 func (gc *GunplaController) SetupRoutes(router *gin.Engine) {
-	gunplaGroup := router.Group("/gunpla")
+	gunplaGroup := router.Group("/api/gunpla")
 	{
 		gunplaGroup.GET("", gc.GetAllGunplasHandler)
 		gunplaGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))

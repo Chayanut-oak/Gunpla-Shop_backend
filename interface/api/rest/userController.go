@@ -27,7 +27,7 @@ func CreateUserController(userService interfaces.UserService) *UserController {
 }
 
 func (gc *UserController) SetupRoutes(router *gin.Engine) {
-	userGroup := router.Group("/user")
+	userGroup := router.Group("/api/user")
 
 	{
 		userGroup.POST("/newUser", gc.NewUserHandler)

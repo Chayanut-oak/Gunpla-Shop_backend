@@ -22,7 +22,7 @@ func CreateForumController(forumService interfaces.ForumService) *ForumControlle
 	}
 }
 func (gc *ForumController) SetupRoutes(router *gin.Engine) {
-	forumGroup := router.Group("/forum")
+	forumGroup := router.Group("/api/forum")
 	{
 		forumGroup.GET("", gc.GetAllForumsHandler)
 		forumGroup.GET("/comment/:forumId", gc.GetAllCommentsInForumHandler)

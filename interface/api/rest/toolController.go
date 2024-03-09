@@ -22,7 +22,7 @@ func CreateToolController(toolService interfaces.ToolService) *ToolController {
 	}
 }
 func (gc *ToolController) SetupRoutes(router *gin.Engine) {
-	toolGroup := router.Group("/tool")
+	toolGroup := router.Group("/api/tool")
 	{
 		toolGroup.GET("", gc.GetAllToolsHandler)
 		toolGroup.Use(middleware.AuthMiddleware(&auth.AuthService{}))
