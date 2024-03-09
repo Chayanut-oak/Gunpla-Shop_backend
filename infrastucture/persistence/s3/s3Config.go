@@ -83,3 +83,7 @@ func S3uploader(c *gin.Context) {
 
 	c.JSON(http.StatusOK, gin.H{"imageUrls": imageUrls})
 }
+
+func Pong(c *gin.Context) {
+	c.JSON(http.StatusOK, gin.H{"imageUrls": "Hello"})
+}

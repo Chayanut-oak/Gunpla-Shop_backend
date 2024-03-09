@@ -20,6 +20,8 @@ func CreateDynamoDBClient() (*DynamoDBClient, error) {
 	godotenv.Load()
 	accessKey := os.Getenv("ACCESSKEYID")
 	secretAccessKey := os.Getenv("SERCETCCESSKEY")
+	fmt.Println("accessKey ", accessKey)
+	fmt.Println("secretAccessKey ", secretAccessKey)
 	fmt.Println(accessKey, secretAccessKey)
 	cfg, err := config.LoadDefaultConfig(context.TODO(),
 		config.WithRegion("localhost"),
