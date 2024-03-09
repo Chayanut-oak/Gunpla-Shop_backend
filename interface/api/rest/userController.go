@@ -47,12 +47,21 @@ func (controller *UserController) NewUserHandler(c *gin.Context) {
 		return
 	}
 	fmt.Print(newUser.Address)
-	res, err := controller.userService.NewUser(newUser)
+	_, err := controller.userService.NewUser(newUser)
 	if err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to create new user"})
 		return
 	}
-	c.JSON(http.StatusCreated, res)
+	token, user, err := controller.userService.AuthenticateUser(newUser.Email, newUser.Password)
+	if err != nil {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "Authentication failed"})
+		return
+	}
+	response := AuthResponse{
+		Token: token,
+		User:  user,
+	}
+	c.JSON(http.StatusOK, response)
 }
 
 func (controller *UserController) Authentication(c *gin.Context) {
