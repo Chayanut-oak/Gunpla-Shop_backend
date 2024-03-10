@@ -54,7 +54,6 @@ func main() {
 	orderController.SetupRoutes(router)
 	userController.SetupRoutes(router)
 	forumController.SetupRoutes(router)
-	router.GET("/api", s3.Pong)
 	router.POST("/api/s3/upload-image", s3.S3uploader)
 	err = router.Run(":8080")
 	if err != nil {
