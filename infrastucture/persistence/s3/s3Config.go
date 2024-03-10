@@ -33,8 +33,8 @@ func S3uploader(c *gin.Context) {
     bucketName := "don-gunpla-store"
     var imageUrls []string
 
-    for , files := range c.Request.MultipartForm.File {
-        for , file := range files {
+    for _, files := range c.Request.MultipartForm.File {
+        for _, file := range files {
             objectKey := uuid.NewString() + ".png"
             src, err := file.Open()
             if err != nil {
